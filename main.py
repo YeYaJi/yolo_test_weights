@@ -45,6 +45,7 @@ def contrast_txt(txt_correct_path, txt_test_path):
     for i in range(len(txt_correct_name_list)):  # 一个txt
         if txt_correct_name_list[i] not in txt_test_name_list:
             wrong_num += 1
+            print("没检测到", txt_correct_name_list[i])
         else:
             correct_list = []
             test_list = []
@@ -64,8 +65,14 @@ def contrast_txt(txt_correct_path, txt_test_path):
                 test_list.sort()
             if correct_list != test_list:
                 wrong_num += 1
+                print('correct==', correct_list)
+                print('test==', test_list,"\n")
 
     print("wrong_num=%d" % wrong_num)
+
+    print("正确文件个数%d" % len(txt_correct_name_list))
+    print("测试文件个数%d\n" % len(txt_test_name_list))
+
     return wrong_num
 
 
@@ -75,4 +82,3 @@ if __name__ == "__main__":
     for txt_file_name in txt_file_test_list:
         txt_path = os.path.join(save_path, txt_file_name)
         contrast_txt(txt_correct_path, txt_path)
-
